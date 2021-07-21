@@ -9,8 +9,4 @@
     <PackageReference Include="Json.Net" Version="1.0.33" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Library\Library.csproj" />
-  </ItemGroup>
-
 </Project>

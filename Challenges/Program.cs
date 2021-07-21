@@ -1,5 +1,4 @@
 ﻿using System;
-using Library.Services;
 
 namespace Challenges
 {
@@ -7,13 +6,9 @@ namespace Challenges
     {
         static void Main(string[] args)
         {
-            var jsonUrl = "https://s3.eu-west-1.amazonaws.com/hackajob-assets1.p.hackajob/challenges/football_session/football.json";
-
-            Console.WriteLine(LeagueServices.GetTotalGoals(jsonUrl, "liverpool"));
-            Console.WriteLine();
-            LeagueServices.LogAllTeamsScores(jsonUrl, "Value", "DeScending");
-            Console.WriteLine();
-            LeagueServices.LogAllTeamsScores(jsonUrl, "Key", "Assending");
+            // This repo has a separate branch for each challenge, and master will remain just a starting template for new challenges.
+            // To start a new challenge, just checkout a new branch with the name you want to give that challenge, then work there.
+            Console.WriteLine("Hello World!");
         }
     }
 }
