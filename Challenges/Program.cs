@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,11 +27,10 @@ namespace JsonFileCreator
 
             // create json object
             List<string> movesList = GetMovesList(gameText);
-            JObject initialGameJson = GetGameMovesInJson(movesList);
-            JObject finalGameJson = new JObject(new JProperty(gameName, initialGameJson));
+            Game finalGameJson = GetGameMovesInJson(gameName, movesList);
 
             // create json file with game moves
-            File.WriteAllText("./Shendidy_vs_David_2021.07.11.json", finalGameJson.ToString());
+            File.WriteAllText("./Shendidy_vs_David_2021.07.11.json", JsonConvert.SerializeObject(finalGameJson, Formatting.Indented));
 
             Console.WriteLine("File created!");
         }
@@ -47,41 +47,53 @@ namespace JsonFileCreator
                 actualMove = move.Split(' ').Length == 3 ?
                     String.Join(' ', move.Split(' ').SkipLast(1)) :
                     String.Join(' ', move.Split(' '));
+
                 movesList.Add(actualMove);
             }
             return movesList;
         }
 
-        private static JObject GetGameMovesInJson(List<string> gameMoves)
+        private static Game GetGameMovesInJson(string gameName, List<string> gameMoves)
         {
-            dynamic gameJson = new JObject();
+            Game game = new Game();
+            game.Name = gameName;
+            game.Moves = new List<Move>();
 
             var moveNumber = 1;
-            foreach (var move in gameMoves)
+            foreach(var move in gameMoves)
             {
-                if (move.Split(' ').Length == 2)
-                    gameJson.Add(
-                        new JProperty(moveNumber.ToString(),
-                            new JObject(
-                                new JProperty("White", move.Split()[0]),
-                                new JProperty("Black", move.Split()[1])
-                            )
-                        )
-                    );
+                Move newMove = new Move();
+                newMove.Number = moveNumber++;
 
+                if(move.Split(' ').Length > 1)
+                {
+                    newMove.White = move.Split(' ').First();
+                    newMove.Black = move.Split(' ').Last();
+                }
                 else
-                    gameJson.Add(
-                    new JProperty(moveNumber.ToString(),
-                        new JObject(
-                            new JProperty("White", move.Split()[0])
-                        )
-                    )
-                );
+                {
+                    newMove.White = move.Split(' ').First();
+                }
 
-                moveNumber++;
+                game.Moves.Add(newMove);
             }
 
-            return gameJson;
+
+
+            return game;
+        }
+
+        public class Game
+        {
+            public string Name { get; set; }
+            public List<Move> Moves { get; set; }
+        }
+
+        public class Move
+        {
+            public int Number { get; set; }
+            public string White { get; set; }
+            public string Black { get; set; }
         }
     }
 }
