@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Shendidy_vs_David_2021.07.11.txt">
+    <None Update="Games\Shendidy_vs_David_2021.07.11.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -11,7 +11,7 @@ namespace JsonFileCreator
         static void Main(string[] args)
         {
             // read file into gameText
-            var gamePath = "./Shendidy_vs_David_2021.07.11.txt";
+            var gamePath = "./Games/Shendidy_vs_David_2021.07.11.txt";
             var gameName = gamePath.Split('/').Last().Split('.').First();
             var gameText = File.ReadAllText(gamePath);
 
