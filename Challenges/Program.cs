@@ -11,9 +11,9 @@ namespace Challenges
 
             Console.WriteLine(LeagueServices.GetTotalGoals(jsonUrl, "liverpool"));
             Console.WriteLine();
-            LeagueServices.LogAllTeamsScores(jsonUrl, "Value", "DeScending");
+            LeagueServices.LogAllTeamsScores(jsonUrl, "Value", false);
             Console.WriteLine();
-            LeagueServices.LogAllTeamsScores(jsonUrl, "Key", "Assending");
+            LeagueServices.LogAllTeamsScores(jsonUrl, "Key", true);
         }
     }
 }

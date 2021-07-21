@@ -40,9 +40,7 @@ namespace Library.Services
             Dictionary<string, int> allTeamsTotalGoals = new Dictionary<string, int>();
 
             foreach(KeyValuePair<string, string> team in teams)
-            {
                 allTeamsTotalGoals.Add(team.Value, GetTotalGoals(jsonUrl, team.Key));
-            }
 
             return allTeamsTotalGoals;
         }
@@ -56,14 +54,13 @@ namespace Library.Services
             return JsonConvert.DeserializeObject<Result>(reader.ReadToEnd());
         }
 
-        public static void LogAllTeamsScores(string jsonUrl, string orderBy, string orderIn)
+        public static void LogAllTeamsScores(string jsonUrl, string orderBy, bool ascending)
         {
             Dictionary<string, int> allTeamsTotalGoals = GetAllTeamsTotalGoals(jsonUrl);
 
             orderBy = orderBy.ToLower();
-            orderIn = orderIn.ToLower();
 
-            if(orderIn == "descending")
+            if(!ascending)
             {
                 if(orderBy == "key")
                     foreach (KeyValuePair<string, int> kvp in allTeamsTotalGoals.OrderByDescending(key => key.Key))
