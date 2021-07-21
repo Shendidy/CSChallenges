@@ -10,6 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JsonFileCreator.Library\JsonFileCreator.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Games\Shendidy_vs_David_2021.07.11.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
