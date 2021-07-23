@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Challenges
 {
@@ -6,9 +7,33 @@ namespace Challenges
     {
         static void Main(string[] args)
         {
-            // This repo has a separate branch for each challenge, and master will remain just a starting template for new challenges.
-            // To start a new challenge, just checkout a new branch with the name you want to give that challenge, then work there.
-            Console.WriteLine("Hello World!");
+            Hobbies hobbies = new Hobbies();
+            hobbies.Add("Steve", "Fashion", "Piano", "Reading");
+            hobbies.Add("Patty", "Drama", "Magic", "Pets");
+            hobbies.Add("Chad", "Puzzles", "Pets", "Yoga");
+
+            hobbies.FindAllHobbyists("Yoga").ForEach(item => Console.WriteLine(item));
+        }
+    }
+
+    public class Hobbies
+    {
+        private readonly Dictionary<string, string[]> hobbies = new Dictionary<string, string[]>();
+
+        public void Add(string hobbyist, params string[] hobbies)
+        {
+            this.hobbies.Add(hobbyist, hobbies);
+        }
+
+        public List<string> FindAllHobbyists(string hobby)
+        {
+            List<string> hobbyists = new List<string>();
+
+            foreach (var hobbyist in this.hobbies)
+                foreach (var h in hobbyist.Value)
+                    if (h.Contains(hobby)) hobbyists.Add(hobbyist.Key);
+
+            return hobbyists;
         }
     }
 }
