@@ -11,4 +11,19 @@ namespace Challenges
             Console.WriteLine("Hello World!");
         }
     }
+
+    public class Solution
+    {
+
+        public static String run(String p)
+        {
+            /*
+            * Write your code below; return type and arguments should be according to the problem's requirements
+            */
+
+
+            String combined_queries = "";
+            return combined_queries;
+        }
+    }
 }
