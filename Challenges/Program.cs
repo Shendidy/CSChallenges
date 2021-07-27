@@ -21,9 +21,8 @@ namespace Challenges
             // Write your code below; return type and arguments should be according to the problem's requirements
             //
             Array.Sort(student_list);
-            for (int i = 1; i < student_list.Length; i++)
+            for (int i = 1; i < student_list.Length; i+=2)
                 if (student_list[i - 1] != student_list[i]) return student_list[i - 1];
-                else i++;
 
             return student_list.Last();
         }
